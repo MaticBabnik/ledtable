@@ -1,31 +1,40 @@
-#define NUM_LEDS 18
-#define G2D_LEDS_W 20
-#define G2D_LEDS_H 20
-
 #include <Arduino.h>
 #include <FastLED.h>
 #include "graphics2D.h"
 
-
-CRGB leds[NUM_LEDS];
-StripDisplay disp(18,1);
-
-void fillLeds(){
-  for(int i=0;i<18;i++){
-    disp.data[i] = CRGB(255,127,000);
-  }
-}
-
-void setup() {
-  FastLED.addLeds<WS2813,13,GRB>(disp.data, NUM_LEDS);
-  FastLED.setBrightness(50);
-  fillLeds();
+StripDisplay disp(11,7);
+void demo();
+void setup()
+{
+  Serial.begin(115200);
+  Serial.println("waaaad?");
+  FastLED.addLeds<WS2812B, 13, GRB>(disp.data, disp.height * disp.width);
+  FastLED.setBrightness(10);
+  
   FastLED.show();
 }
 
-void loop() {
-   //put your main code here, to run repeatedly:
-  fillLeds();
+void loop()
+{
+  demo();
+  delay(1000);
+}
+void demo(){
+  disp.clear();
+  disp.drawPoint(1, 0, CRGB::Red);
+  disp.drawPoint(0, 0, CRGB::Blue);
+  disp.drawPoint(0, 1, CRGB::Green);
   FastLED.show();
-  delay(30);
+  delay(500);
+  disp.clear();
+  FastLED.show();
+  delay(400);
+  disp.clear(CRGB::Red);
+  FastLED.show();
+  delay(100);
+  disp.drawRect(0,0,10,6,CRGB::Blue);
+  disp.drawLine(0,0,10,6,CRGB::Green);
+  FastLED.show();
+  delay(1000);
+
 }

@@ -1,11 +1,14 @@
+/*
+/////////////////////////////////////////////////
+! File:         graphics2D.h
+! Description:  2D graphics for a led strip grid
+! Authors:      Matic Babnik
+/////////////////////////////////////////////////
+*/
+
 #pragma once
 #include <Arduino.h>
 #include <FastLED.h>
-/*
-! 2D graphics for a led strip grid
-
-TODO add functions for drawing rectangles, lines and filled rectangles
-*/
 
 class StripDisplay
 {
@@ -20,5 +23,7 @@ public:
     void drawRect(byte x1, byte y1, byte x2, byte y2, CRGB color);
     void fillRect(byte x1, byte y1, byte x2, byte y2, CRGB color);
     void drawLine(byte x1, byte y1, byte x2, byte y2, CRGB color);
+    void clear();
+    void clear(CRGB color);
     int PointToIndex(byte x, byte y);
 };
