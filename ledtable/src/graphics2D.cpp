@@ -119,7 +119,7 @@ void StripDisplay::drawLine(byte x1, byte y1, byte x2, byte y2, CRGB color)
 //Converts 2D coordinates into 1D snake strip
 int StripDisplay::pointToIndex(byte x, byte y)
 {
-    if (y % 2 == 0) //check if the pixels in the column are in the right or wrong order
+    if (y % 2 == 1) //check if the pixels in the column are in the right or wrong order
     {
         return y * StripDisplay::width + x;
     }
